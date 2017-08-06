@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    
+    <title>搭建hexo-github blog | tomato</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    
+      <link rel="icon" href="/favicon.png">
+    
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <link rel="stylesheet" href="/js/google-code-prettify/tomorrow-night-eighties.min.css">
+
+  </head>
+
+  <body>
+
+<header>
+	<a id="logo" href="/" title="tomato">
+	<img src="/favicon.png" alt="tomato"></a>
+	
+	
+		<!--搜索栏-->
+		<i class="js-toggle-search iconfont icon-search"></i>
+
+
+<form class="js-search search-form search-form--modal" method="get" action="http://gushi.li" role="search">
+	<div class="search-form__inner">
+		<div>
+			<i class="iconfont icon-search"></i>
+			<input class="text-input" placeholder="Enter Key..." type="search">
+		</div>
+	</div>
+</form>
+	
+
+	
+		<!--侧边导航栏-->
+		<a id="nav-toggle" href="#"><span></span></a>
+
+<nav>
+	<div class="menu-top-container">
+		<ul id="menu-top" class="menu">
+			
+				
+				<li class="current-menu-item">
+					<a href="https://github.com/zhanglinhai" target="_blank">github</a>
+				</li>
+			
+		</ul>
+	</div>
+</nav>
+	
+
+</header>
+<div class="m-header ">
+	<section id="hero1" class="hero">
+		<div class="inner">
+		</div>
+	</section>
+	
+		<figure class="top-image" data-enable=true></figure>
+	
+</div>
+
+<!--文章列表-->
+<div class="wrapper">
+  
+    <!--文章-->
+<article>
+	
+  
+    <h1 class="post-title" itemprop="name">
+      搭建hexo-github blog
+    </h1>
+  
+
+	<div class='post-body mb'>
+		<p>在github上搭建博客，好处有：</p>
+<ul>
+<li>免费，github提供了username.github.io炫酷的域名</li>
+<li>生成的项目简单，文件都很小</li>
+<li>持续发布简单，markdown编写，直接把文件丢上去就可以了</li>
+<li>漂亮的主题比较多，而且配置很简单</li>
+</ul>
+<h4 id="进入正题-windows下如何搭建"><a href="#进入正题-windows下如何搭建" class="headerlink" title="进入正题:windows下如何搭建"></a>进入正题:windows下如何搭建</h4><p><strong>总共需要3步</strong></p>
+<ol>
+<li><strong>环境配置</strong><br> 首先安装几个必须的软件，nodejs，git，hexo</li>
+<li><strong>搭建本地服务</strong><br>新建文件夹，例如github<br>进入github上一层目录，执行hexo init github<br>执行npm install 这个项目就初始化好了。<br>执行 hexo g<br>hexo server<br>访问localhost:4000 搭建完成</li>
+<li><strong>上传到github</strong><br>创建repository：username.github.io.<br>生成ssh key【后面deploy需要】</li>
+</ol>
+<h4 id="遇到的一个坑"><a href="#遇到的一个坑" class="headerlink" title="遇到的一个坑"></a><strong><strong>遇到的一个坑</strong></strong></h4><ol>
+<li><p>搭建 hexo，在执行 hexo deploy 后,出现 error deployer not found:github 的错误</p>
+<p> 把_config.yml中的Git仓库链接改成了ssh链接，然后又给git账户增加了ssh key<br> hexo 更新到3.0之后，deploy的type 的github需要改成git<br> npm install hexo-deployer-git –save 改了之后执行，然后再部署试试</p>
+</li>
+</ol>
+<h4 id="每次发布执行以下命令"><a href="#每次发布执行以下命令" class="headerlink" title="每次发布执行以下命令"></a><strong><strong>每次发布执行以下命令</strong></strong></h4><p>hexo clean<br>hexo g<br>hexo d</p>
+<h4 id="目录简介"><a href="#目录简介" class="headerlink" title="目录简介"></a><strong><strong>目录简介</strong></strong></h4><ul>
+<li>.deploy_git文件夹就是同步到github的文件</li>
+<li>themes是主题文件夹，下载的主题解压在这里，修改_config.yml文件的theme</li>
+<li>source_posts 是写的md文件，新的文件丢到这里</li>
+</ul>
+<h6 id="success"><a href="#success" class="headerlink" title="success"></a><strong>success</strong></h6>
+	</div>
+	<div class="meta split">
+		
+		<time class="post-date" datetime="2017-08-06T08:00:25.932Z" itemprop="datePublished">2017-08-06</time>
+	</div>
+</article>
+
+<!--评论-->
+
+	
+<div class="ds-thread" data-thread-key="hexo-github blog" data-title="搭建hexo-github blog" data-url="/2017/08/06/hexo-github blog/"></div>
+<script type="text/javascript">
+
+var duoshuoQuery = {short_name:"yumemor"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0]
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+</script>
+
+
+  
+</div>
+
+
+  <svg id="bigTriangleColor" width="100%" height="40" viewBox="0 0 100 102" preserveAspectRatio="none">
+    <path d="M0 0 L50 100 L100 0 Z"></path>
+  </svg>
+
+  
+
+
+  <div class="wrapper"></div>
+
+
+
+
+
+<div class="fat-footer">
+	<div class="wrapper">
+		<div class="layout layout--center">
+			<div class="layout__item palm-mb">
+				<div class="media">
+					<img class="headimg" src='https://avatars0.githubusercontent.com/u/10754608?v=4&amp;s=460' alt='tomato'>
+					<div class="media__body">
+						<h4>tomato</h4>
+						<p class='site-description'>面对现实，忠于理想</p>
+					</div>
+				</div>
+				<div class="author-contact">
+					<ul>
+						
+							
+							<li>
+				        		<a href="null" target="_blank">
+				        			
+				        				<i class="iconfont icon-weibo"></i>
+				        			
+				        		</a>
+				        	</li>
+						
+							
+							<li>
+				        		<a href="https://github.com/zhanglinhai" target="_blank">
+				        			
+				        				<i class="iconfont icon-github"></i>
+				        			
+				        		</a>
+				        	</li>
+						
+							
+							<li>
+				        		<a href="null" target="_blank">
+				        			
+										<i class="iconfont icon-zhihu"></i>
+				        			
+				        		</a>
+				        	</li>
+						
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<footer class="footer" role="contentinfo">
+	<div class="wrapper wrapper--wide split split--responsive">
+		
+		<span>© 2017 tomato All Rights Reserved</span>
+	</div>
+</footer>
+
+	<!-－这里导入了 lib.js 里面涵盖了 jQuery 等框架 所以注释掉-->
+	<!--<script src="http://lib.sinaapp.com/js/jquery/2.0/jquery.min.js"></script>-->
+	<script src="/js/lib.js"></script>
+	<script src="/js/google-code-prettify/prettify.js"></script>
+	<script src="/js/module.js"></script>
+	<script src="/js/script.js"></script>
+	
+	<script type='text/javascript'>
+		//代码高亮
+		$(document).ready(function(){
+	 		$('pre').addClass('prettyprint linenums').attr('style', 'overflow:auto;');
+   			prettyPrint();
+		});
+	</script>
+	</body>
+</html>
