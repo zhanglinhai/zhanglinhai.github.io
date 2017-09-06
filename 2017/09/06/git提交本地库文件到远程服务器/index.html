@@ -69,41 +69,53 @@
 <!--文章列表-->
 <div class="wrapper">
   
-    <ul class="posts-list mb+ js-posts">
-      
-                <!--<div class="type">
-          <div class="mask">
-            <i class="iconfont"></i>
-          </div>
-          </div>-->
-        <li class="post">
-          
-            <i class="post-status iconfont icon-icon"></i>  
-          
-          <h2 class="no-background"  >
-            <span><a href="/2017/09/06/git提交本地库文件到远程服务器/"></a></span>
-            <time class="post-time" datetime="2017-09-06T03:25:34.864Z" itemprop="datePublished">2017-09-06</time>
-          </h2>
-        </li>
-      
-                <!--<div class="type">
-          <div class="mask">
-            <i class="iconfont"></i>
-          </div>
-          </div>-->
-        <li class="post">
-          
-          <h2 class="no-background"  >
-            <span><a href="/2017/08/06/hexo-github blog/">搭建hexo-github blog</a></span>
-            <time class="post-time" datetime="2017-08-06T08:00:25.932Z" itemprop="datePublished">2017-08-06</time>
-          </h2>
-        </li>
-      
-    </ul>
-    
+    <!--文章-->
+<article>
+	
+	<div class='post-body mb'>
+		<h1 id="git提交本地库文件到远程服务器"><a href="#git提交本地库文件到远程服务器" class="headerlink" title="git提交本地库文件到远程服务器"></a>git提交本地库文件到远程服务器</h1><p>标签（空格分隔）： git</p>
+<hr>
+<h3 id="1、创建代码库"><a href="#1、创建代码库" class="headerlink" title="- 1、创建代码库"></a>- 1、创建代码库</h3><h3 id="2、设置Git"><a href="#2、设置Git" class="headerlink" title="- 2、设置Git"></a>- 2、设置Git</h3><p>在Git工作之前，为了能够跟踪到是谁对这段代码进行了修改，需要做一个配置信息，主要是用户名和邮箱，如下：<br>git config –global user.name “your_username”<br>git config –global user.email your_email@domain.com  </p>
+<h3 id="3、加载文件"><a href="#3、加载文件" class="headerlink" title="- 3、加载文件"></a>- 3、加载文件</h3><p>当我们配置完信息之后，需要将我们的修改信息，添加到git上来，命令为：<br><strong>git add .</strong><br>这里的“.”符号的意思是“所有文件、文件夹和子文件夹”，如果是特定文件，可以指定名称，如下：<br>git add my_file,other_file<br><strong>git commit -m “initial commit” </strong> </p>
+<h3 id="4、推送到远程"><a href="#4、推送到远程" class="headerlink" title="- 4、推送到远程"></a>- 4、推送到远程</h3><p>注意，仅仅只是使用了上面的命令，还是不能将代码提交到远程服务器上去，原因是git在本地也是有代码仓库的！！！<br>所以，如果我们需要将代码提交到远程服务器上面去，需要先配置部分信息，如下：<br><strong>git remote add origin</strong> <em><a href="https://your_username@bitbucket.org/your_username/name_of_remote_repository.git" target="_blank" rel="external">https://your_username@bitbucket.org/your_username/name_of_remote_repository.git</a></em><br>然后，你想要推送你的本地代码库的主干分支到你的远程代码库，可以使用如下命令：<br><strong>git push origin master </strong><br>master是你的分支名称，你也可以修改到其它分支</p>
+
+	</div>
+	<div class="meta split">
+		
+		<time class="post-date" datetime="2017-09-06T03:25:34.864Z" itemprop="datePublished">2017-09-06</time>
+	</div>
+</article>
+
+<!--评论-->
+
+	
+<div class="ds-thread" data-thread-key="git提交本地库文件到远程服务器" data-title="" data-url="/2017/09/06/git提交本地库文件到远程服务器/"></div>
+<script type="text/javascript">
+
+var duoshuoQuery = {short_name:"yumemor"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0]
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+</script>
+
 
   
 </div>
+
+
+  <svg id="bigTriangleColor" width="100%" height="40" viewBox="0 0 100 102" preserveAspectRatio="none">
+    <path d="M0 0 L50 100 L100 0 Z"></path>
+  </svg>
+
+  
+
+
+  <div class="wrapper"></div>
 
 
 
