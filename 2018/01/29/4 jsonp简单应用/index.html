@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    
+    <title>tomato</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    
+      <link rel="icon" href="/favicon.png">
+    
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <link rel="stylesheet" href="/js/google-code-prettify/tomorrow-night-eighties.min.css">
+
+  </head>
+
+  <body>
+
+<header>
+	<a id="logo" href="/" title="tomato">
+	<img src="/favicon.png" alt="tomato"></a>
+	
+	
+		<!--搜索栏-->
+		<i class="js-toggle-search iconfont icon-search"></i>
+
+
+<form class="js-search search-form search-form--modal" method="get" action="http://gushi.li" role="search">
+	<div class="search-form__inner">
+		<div>
+			<i class="iconfont icon-search"></i>
+			<input class="text-input" placeholder="Enter Key..." type="search">
+		</div>
+	</div>
+</form>
+	
+
+	
+		<!--侧边导航栏-->
+		<a id="nav-toggle" href="#"><span></span></a>
+
+<nav>
+	<div class="menu-top-container">
+		<ul id="menu-top" class="menu">
+			
+				
+				<li class="current-menu-item">
+					<a href="https://github.com/zhanglinhai" target="_blank">github</a>
+				</li>
+			
+		</ul>
+	</div>
+</nav>
+	
+
+</header>
+<div class="m-header ">
+	<section id="hero1" class="hero">
+		<div class="inner">
+		</div>
+	</section>
+	
+		<figure class="top-image" data-enable=true></figure>
+	
+</div>
+
+<!--文章列表-->
+<div class="wrapper">
+  
+    <!--文章-->
+<article>
+	
+	<div class='post-body mb'>
+		<h4 id="jsonp的工作原理："><a href="#jsonp的工作原理：" class="headerlink" title="jsonp的工作原理："></a>jsonp的工作原理：</h4><p>就是利用<script>标签没有跨域限制的“漏洞”来达到与第三方通讯的目的。     第三方产生的响应为json数据的包装（故称之为jsonp，即json padding），形如：     callback({“name”:”hax”,”gender”:”Male”})     这样浏览器会调用callback函数，并传递解析后json对象作为参数。</p>
+<h3 id="ajax"><a href="#ajax" class="headerlink" title="ajax"></a>ajax</h3><h4 id="jsonp参数对应callbackParam参数名，jsonpCallback对应值，也就是回调的页面js-function方法名。"><a href="#jsonp参数对应callbackParam参数名，jsonpCallback对应值，也就是回调的页面js-function方法名。" class="headerlink" title="jsonp参数对应callbackParam参数名，jsonpCallback对应值，也就是回调的页面js function方法名。"></a>jsonp参数对应callbackParam参数名，jsonpCallback对应值，也就是回调的页面js function方法名。</h4><h4 id="（注意：如果回调不成功，检查返回的数据是不是json。）"><a href="#（注意：如果回调不成功，检查返回的数据是不是json。）" class="headerlink" title="（注意：如果回调不成功，检查返回的数据是不是json。）"></a>（注意：如果回调不成功，检查返回的数据是不是json。）</h4><h4 id="先回调jsonpCallback方法（如果没有直接跳过这一步），再进入ajax-success的处理逻辑。"><a href="#先回调jsonpCallback方法（如果没有直接跳过这一步），再进入ajax-success的处理逻辑。" class="headerlink" title="先回调jsonpCallback方法（如果没有直接跳过这一步），再进入ajax success的处理逻辑。"></a>先回调jsonpCallback方法（如果没有直接跳过这一步），再进入ajax success的处理逻辑。</h4><h4 id="jsonp仅仅适用于跨服务的get请求"><a href="#jsonp仅仅适用于跨服务的get请求" class="headerlink" title="jsonp仅仅适用于跨服务的get请求"></a>jsonp仅仅适用于跨服务的get请求</h4><p>后台返回数据格式为：</p>
+<p>“callbackParam”({“view”:null,”model”:{“hashMap”:{“result”:”{\”items\”:[{\”item\”:\”1\”,\”score\”:0.8},{\”item\”:\”2\”,\”score\”:0.6},{\”item\”:\”3\”,\”score\”:0.9},{\”item\”:\”5\”,\”score\”:0.6},{\”item\”:\”6\”,\”score\”:0.1}]}”,”message”:”Success”,”Flag”:”1”}},”empty”:false,”viewName”:null,”reference”:false,”modelMap”:{“hashMap”:{“result”:”{\”items\”:[{\”item\”:\”1\”,\”score\”:0.8},{\”item\”:\”2\”,\”score\”:0.6},{\”item\”:\”3\”,\”score\”:0.9},{\”item\”:\”5\”,\”score\”:0.6},{\”item\”:\”6\”,\”score\”:0.1}]}”,”message”:”Success”,”Flag”:”1”}}})</p>
+<p>spring4.0,返回JSONObject，返回的格式为<br>{<br>“function”:”callbackParam”,<br>“value”:{“view”:null,”model”:{“hashMap”:{“result”:”{\”items\”:[{\”item\”:\”1\”,\”score\”:0.8},{\”item\”:\”2\”,\”score\”:0.6},{\”item\”:\”3\”,\”score\”:0.9},{\”item\”:\”5\”,\”score\”:0.6},{\”item\”:\”6\”,\”score\”:0.1}]}”,”message”:”Success”,”Flag”:”1”}},”empty”:false,”viewName”:null,”reference”:false,”modelMap”:{“hashMap”:{“result”:”{\”items\”:[{\”item\”:\”1\”,\”score\”:0.8},{\”item\”:\”2\”,\”score\”:0.6},{\”item\”:\”3\”,\”score\”:0.9},{\”item\”:\”5\”,\”score\”:0.6},{\”item\”:\”6\”,\”score\”:0.1}]}”,”message”:”Success”,”Flag”:”1”}}}<br>}</p>
+<p>页面js</p>
+<pre><code>$.ajax({
+    type: &quot;GET&quot;,
+    async:false,
+    url :&quot;http://localhost:8180/autoRecommend/getuserproductinfo?&quot;+timestamp,
+    data: {userId:1,id:1,type:&quot;cid_number&quot;},
+    dataType : &quot;jsonp&quot;,
+    jsonp: &quot;callbackParam&quot;,//传递给请求处理程序或页面的，用以获得jsonp回调函数名的参数名(默认为:callback)
+    // jsonpCallback:&quot;callback&quot;,//自定义的jsonp回调函数名称，默认为jQuery自动生成的随机函数名,
+    success : function(data){
+        alert(JSON.stringify(data.model.hashMap));
+        var resultMessage = data.model.hashMap.message;
+        if(resultMessage == &apos;Success&apos;) {
+            var jsonpData = data.model.hashMap.result;
+            var dataJson = eval(&quot;(&quot; + jsonpData + &quot;)&quot;);
+            $(&quot;#recommend&quot;).html(&quot;&quot;);
+            var count = 1;
+            $.each(dataJson,function(i,v){ 
+             console.log(JSON.toJSONString(v));
+             }); 
+        }
+    },
+    error:function(data){
+    }
+});
+</code></pre><p>后台</p>
+<pre><code>/**
+* &quot;callbackParam&quot;为参数名
+* callbackParam的值为页面回调的js function名
+*/
+@RequestMapping(value = &quot;/getuserproductinfo&quot;, method = RequestMethod.GET,produces = &quot;text/html&quot;)    
+public @ResponseBody JSONPObject getUserProductInfo(HttpServletRequest request, @RequestParam String callbackParam) throws Exception {
+    curr_logger.debug(&quot;===================getUserProductInfo start===================&quot;);
+    ModelAndView modelAndView = new ModelAndView();
+    Map&lt;String, Object&gt; map = new HashMap&lt;String, Object&gt;();
+    String result = &quot;&quot;;
+    try {
+        String userId=request.getParameter(&quot;userId&quot;);
+        result=productRecommendBiz.getUserProductInfo(userId);
+    } catch (Exception e) {
+        map = putInfoToMap(HealthContent.NO_FOUND_FLAG, &quot;No Found ProductInfo&quot;);
+        map.put(&quot;result&quot;, &quot;&quot;);
+        modelAndView.addObject(map);
+        return new JSONPObject(callbackParam,modelAndView);//spring3.x 4.x都支持
+//            return callbackParam+&quot;(&quot;+ JSON.toJSONString(modelAndView)+&quot;)&quot;;//只支持spring4.x
+    }
+
+}
+</code></pre></script></p>
+	</div>
+	<div class="meta split">
+		
+		<time class="post-date" datetime="2018-01-29T07:23:15.714Z" itemprop="datePublished">2018-01-29</time>
+	</div>
+</article>
+
+<!--评论-->
+
+	
+<div class="ds-thread" data-thread-key="4 jsonp简单应用" data-title="" data-url="/2018/01/29/4 jsonp简单应用/"></div>
+<script type="text/javascript">
+
+var duoshuoQuery = {short_name:"yumemor"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0]
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+</script>
+
+
+  
+</div>
+
+
+  <svg id="bigTriangleColor" width="100%" height="40" viewBox="0 0 100 102" preserveAspectRatio="none">
+    <path d="M0 0 L50 100 L100 0 Z"></path>
+  </svg>
+
+  
+
+
+  <div class="wrapper"></div>
+
+
+
+
+
+<div class="fat-footer">
+	<div class="wrapper">
+		<div class="layout layout--center">
+			<div class="layout__item palm-mb">
+				<div class="media">
+					<img class="headimg" src='https://avatars0.githubusercontent.com/u/10754608?v=4&amp;s=460' alt='tomato'>
+					<div class="media__body">
+						<h4>tomato</h4>
+						<p class='site-description'>服务端程序猿一枚</p>
+					</div>
+				</div>
+				<div class="author-contact">
+					<ul>
+						
+							
+							<li>
+				        		<a href="null" target="_blank">
+				        			
+				        				<i class="iconfont icon-weibo"></i>
+				        			
+				        		</a>
+				        	</li>
+						
+							
+							<li>
+				        		<a href="https://github.com/zhanglinhai" target="_blank">
+				        			
+				        				<i class="iconfont icon-github"></i>
+				        			
+				        		</a>
+				        	</li>
+						
+							
+							<li>
+				        		<a href="null" target="_blank">
+				        			
+										<i class="iconfont icon-zhihu"></i>
+				        			
+				        		</a>
+				        	</li>
+						
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<footer class="footer" role="contentinfo">
+	<div class="wrapper wrapper--wide split split--responsive">
+		
+		<span>© 2017 tomato All Rights Reserved</span>
+	</div>
+</footer>
+
+	<!-－这里导入了 lib.js 里面涵盖了 jQuery 等框架 所以注释掉-->
+	<!--<script src="http://lib.sinaapp.com/js/jquery/2.0/jquery.min.js"></script>-->
+	<script src="/js/lib.js"></script>
+	<script src="/js/google-code-prettify/prettify.js"></script>
+	<script src="/js/module.js"></script>
+	<script src="/js/script.js"></script>
+	
+	<script type='text/javascript'>
+		//代码高亮
+		$(document).ready(function(){
+	 		$('pre').addClass('prettyprint linenums').attr('style', 'overflow:auto;');
+   			prettyPrint();
+		});
+	</script>
+	</body>
+</html>

@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    
+    <title>tomato</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    
+      <link rel="icon" href="/favicon.png">
+    
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <link rel="stylesheet" href="/js/google-code-prettify/tomorrow-night-eighties.min.css">
+
+  </head>
+
+  <body>
+
+<header>
+	<a id="logo" href="/" title="tomato">
+	<img src="/favicon.png" alt="tomato"></a>
+	
+	
+		<!--搜索栏-->
+		<i class="js-toggle-search iconfont icon-search"></i>
+
+
+<form class="js-search search-form search-form--modal" method="get" action="http://gushi.li" role="search">
+	<div class="search-form__inner">
+		<div>
+			<i class="iconfont icon-search"></i>
+			<input class="text-input" placeholder="Enter Key..." type="search">
+		</div>
+	</div>
+</form>
+	
+
+	
+		<!--侧边导航栏-->
+		<a id="nav-toggle" href="#"><span></span></a>
+
+<nav>
+	<div class="menu-top-container">
+		<ul id="menu-top" class="menu">
+			
+				
+				<li class="current-menu-item">
+					<a href="https://github.com/zhanglinhai" target="_blank">github</a>
+				</li>
+			
+		</ul>
+	</div>
+</nav>
+	
+
+</header>
+<div class="m-header ">
+	<section id="hero1" class="hero">
+		<div class="inner">
+		</div>
+	</section>
+	
+		<figure class="top-image" data-enable=true></figure>
+	
+</div>
+
+<!--文章列表-->
+<div class="wrapper">
+  
+    <!--文章-->
+<article>
+	
+	<div class='post-body mb'>
+		<h3 id="dubbo解决了以下基本需求"><a href="#dubbo解决了以下基本需求" class="headerlink" title="dubbo解决了以下基本需求"></a>dubbo解决了以下基本需求</h3><p>本文参考了dubbo官方文档<br><a href="http://dubbo.io/User+Guide-zh.htm" target="_blank" rel="external">http://dubbo.io/User+Guide-zh.htm</a></p>
+<h5 id="1、当服务越来越多时，服务-URL-配置管理变得非常困难"><a href="#1、当服务越来越多时，服务-URL-配置管理变得非常困难" class="headerlink" title="1、当服务越来越多时，服务 URL 配置管理变得非常困难"></a>1、当服务越来越多时，服务 URL 配置管理变得非常困难</h5><p>dubbo的服务注册中心，可以动态的注册和发现服务，使服务的位置透明。并通过在消费方获取服务提供方地址列表，实现软负载均衡和 Failover</p>
+<h5 id="2、服务间依赖关系变得错踪复杂，甚至分不清哪个应用要在哪个应用之前启动"><a href="#2、服务间依赖关系变得错踪复杂，甚至分不清哪个应用要在哪个应用之前启动" class="headerlink" title="2、服务间依赖关系变得错踪复杂，甚至分不清哪个应用要在哪个应用之前启动"></a>2、服务间依赖关系变得错踪复杂，甚至分不清哪个应用要在哪个应用之前启动</h5><h5 id="3、服务调用量越来越大，需要多少机器，什么时间加"><a href="#3、服务调用量越来越大，需要多少机器，什么时间加" class="headerlink" title="3、服务调用量越来越大，需要多少机器，什么时间加"></a>3、服务调用量越来越大，需要多少机器，什么时间加</h5><p>1dubbo monitor 可以统计服务每天的调用量，响应时间<br>2dubbo admin可以动态调整权重，直到一台响应时间达到阀值，再乘以服务数量，可以推算出总的容量</p>
+<h4 id="dubbo采用全spring配置，配置简单"><a href="#dubbo采用全spring配置，配置简单" class="headerlink" title="dubbo采用全spring配置，配置简单"></a>dubbo采用全spring配置，配置简单</h4><h3 id="dubbo提供了几种负载均衡策略"><a href="#dubbo提供了几种负载均衡策略" class="headerlink" title="dubbo提供了几种负载均衡策略"></a>dubbo提供了几种负载均衡策略</h3><p>random 按权重设置随机概率。缺省配置<br>同一个截面碰撞率高，量越大分布越均匀</p>
+<p>roundRobin 轮询<br>如果某一台处理慢，容易请求堆积</p>
+<p>leastActive 最少活跃调用数，相同数随机</p>
+<p>consistentHash 一致性哈希，相同参数发到同一机器</p>
+<p>现在公司的工程采用的是roudRobin，因为只有两个服务</p>
+<h3 id="多注册中心"><a href="#多注册中心" class="headerlink" title="多注册中心"></a>多注册中心</h3><p>支持zookeeper，redis，Multicast ，simple。推荐zookeeper，比较稳定</p>
+<p><a href="http://dubbo.io/books/dubbo-user-book/references/registry/introduction.html" target="_blank" rel="external">http://dubbo.io/books/dubbo-user-book/references/registry/introduction.html</a></p>
+<h3 id="多协议"><a href="#多协议" class="headerlink" title="多协议"></a>多协议</h3><p>dubbo协议 ，单一长连接和NIO通讯，适合小数据量大并发，消费者数量大于服务提供者，不适合传大文件，例如视频，图片</p>
+<p>rmi协议</p>
+<p>阻塞式短连接和JDK标准序列化方式，适合传入传出参数数据部大小混合，消费者和提供者数量差不多，可传文件，常规远程服务方法调用</p>
+<p>Hessian协议，底层采用http通讯，servlet暴露服务，dubbo缺省内嵌jetty作为服务器实现。可与原生的hession服务相互操作<br>适合页面传输，文件传输，提供者比消费者多，传文件，提供者压力大，或与原生hession服务相互操作</p>
+<p>http协议<br>适合提供者比消费者多，可用浏览器查看，可用表单或url传入参数，不支持传文件。同时给应用程序和浏览器的js使用</p>
+<p>webservice协议<br>适合与原生webservice服务互操作</p>
+<p>thrift协议，对thrift原生协议的扩展</p>
+<p>memcached协议<br>基于memcached实现的RPC协议</p>
+<p>redis协议<br>基于redis实现的RPC协议</p>
+<p><a href="http://dubbo.io/books/dubbo-user-book/references/protocol/introduction.html" target="_blank" rel="external">http://dubbo.io/books/dubbo-user-book/references/protocol/introduction.html</a></p>
+<h3 id="集群容错"><a href="#集群容错" class="headerlink" title="集群容错"></a>集群容错</h3><p>提供了多种容错方案，缺省为 failover 重试</p>
+<p>Failover Cluster 自动重试一般适用于读操作，可以设置重试次数</p>
+<p>Failfast Cluster 快速失败一般适用于写操作</p>
+<p>还有 Forking Cluster 并行调用多个，只要一个成功就返回，可以设置并发数，用于实时性较高的操作，目前没有用到</p>
+<p>等其他容错方案，参见dubbo文档</p>
+<p><a href="http://dubbo.io/books/dubbo-user-book/demos/fault-tolerent-strategy.html#" target="_blank" rel="external">http://dubbo.io/books/dubbo-user-book/demos/fault-tolerent-strategy.html#</a></p>
+<h3 id="dubbo超时机制"><a href="#dubbo超时机制" class="headerlink" title="dubbo超时机制"></a>dubbo超时机制</h3><p>超时机制是针对客户端来说的，客户端访问采用的NIO，调用服务端后返回一个ResponseFuture，然后不断轮询结果。</p>
+<p>设置优先级为：</p>
+<p>客户端方法级&gt;客户端接口级&gt;客户端全局&gt;服务端方法级&gt;服务端接口级&gt;服务端全局</p>
+<p>设置可以在客户端设置，也可以在服务端设置，一般推荐在服务端设置。因为服务端提供的服务大概是多久可以返回结果，一般服务端自己比较清楚。从这个角度来说，服务端设置比较清楚</p>
+<p>引用<a href="https://www.cnblogs.com/ASPNET2008/p/7292472.html" target="_blank" rel="external">https://www.cnblogs.com/ASPNET2008/p/7292472.html</a></p>
+
+	</div>
+	<div class="meta split">
+		
+		<time class="post-date" datetime="2018-01-29T07:23:02.644Z" itemprop="datePublished">2018-01-29</time>
+	</div>
+</article>
+
+<!--评论-->
+
+	
+<div class="ds-thread" data-thread-key="3 dubbo简介" data-title="" data-url="/2018/01/29/3 dubbo简介/"></div>
+<script type="text/javascript">
+
+var duoshuoQuery = {short_name:"yumemor"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0]
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+</script>
+
+
+  
+</div>
+
+
+  <svg id="bigTriangleColor" width="100%" height="40" viewBox="0 0 100 102" preserveAspectRatio="none">
+    <path d="M0 0 L50 100 L100 0 Z"></path>
+  </svg>
+
+  
+
+
+  <div class="wrapper"></div>
+
+
+
+
+
+<div class="fat-footer">
+	<div class="wrapper">
+		<div class="layout layout--center">
+			<div class="layout__item palm-mb">
+				<div class="media">
+					<img class="headimg" src='https://avatars0.githubusercontent.com/u/10754608?v=4&amp;s=460' alt='tomato'>
+					<div class="media__body">
+						<h4>tomato</h4>
+						<p class='site-description'>服务端程序猿一枚</p>
+					</div>
+				</div>
+				<div class="author-contact">
+					<ul>
+						
+							
+							<li>
+				        		<a href="null" target="_blank">
+				        			
+				        				<i class="iconfont icon-weibo"></i>
+				        			
+				        		</a>
+				        	</li>
+						
+							
+							<li>
+				        		<a href="https://github.com/zhanglinhai" target="_blank">
+				        			
+				        				<i class="iconfont icon-github"></i>
+				        			
+				        		</a>
+				        	</li>
+						
+							
+							<li>
+				        		<a href="null" target="_blank">
+				        			
+										<i class="iconfont icon-zhihu"></i>
+				        			
+				        		</a>
+				        	</li>
+						
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<footer class="footer" role="contentinfo">
+	<div class="wrapper wrapper--wide split split--responsive">
+		
+		<span>© 2017 tomato All Rights Reserved</span>
+	</div>
+</footer>
+
+	<!-－这里导入了 lib.js 里面涵盖了 jQuery 等框架 所以注释掉-->
+	<!--<script src="http://lib.sinaapp.com/js/jquery/2.0/jquery.min.js"></script>-->
+	<script src="/js/lib.js"></script>
+	<script src="/js/google-code-prettify/prettify.js"></script>
+	<script src="/js/module.js"></script>
+	<script src="/js/script.js"></script>
+	
+	<script type='text/javascript'>
+		//代码高亮
+		$(document).ready(function(){
+	 		$('pre').addClass('prettyprint linenums').attr('style', 'overflow:auto;');
+   			prettyPrint();
+		});
+	</script>
+	</body>
+</html>
