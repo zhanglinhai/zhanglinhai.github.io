@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     
-    <title>tomato</title>
+    <title>jsonp应用 | tomato</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
     
@@ -72,13 +72,19 @@
     <!--文章-->
 <article>
 	
+  
+    <h1 class="post-title" itemprop="name">
+      jsonp应用
+    </h1>
+  
+
 	<div class='post-body mb'>
-		<h4 id="jsonp的工作原理："><a href="#jsonp的工作原理：" class="headerlink" title="jsonp的工作原理："></a>jsonp的工作原理：</h4><p>就是利用<script>标签没有跨域限制的“漏洞”来达到与第三方通讯的目的。     第三方产生的响应为json数据的包装（故称之为jsonp，即json padding），形如：     callback({“name”:”hax”,”gender”:”Male”})     这样浏览器会调用callback函数，并传递解析后json对象作为参数。</p>
+		<h3 id="1、jsonp应用场景"><a href="#1、jsonp应用场景" class="headerlink" title="- 1、jsonp应用场景"></a>- 1、jsonp应用场景</h3><p>跨域调用服务，适用于跨域get请求，返回jsfunction(“{key:key}”)格式的json数据，页面解析时会直接调用jsfunction方法，解析结果数据</p>
+<h3 id="2、jsonp的工作原理"><a href="#2、jsonp的工作原理" class="headerlink" title="- 2、jsonp的工作原理"></a>- 2、jsonp的工作原理</h3><p>就是利用 script标签没有跨域限制的“漏洞”来达到与第三方通讯的目的。     第三方产生的响应为json数据的包装（故称之为jsonp，即json padding），形如：     callback({“name”:”hax”,”gender”:”Male”})     这样浏览器会调用callback函数，并传递解析后json对象作为参数。</p>
 <h3 id="ajax"><a href="#ajax" class="headerlink" title="ajax"></a>ajax</h3><h4 id="jsonp参数对应callbackParam参数名，jsonpCallback对应值，也就是回调的页面js-function方法名。"><a href="#jsonp参数对应callbackParam参数名，jsonpCallback对应值，也就是回调的页面js-function方法名。" class="headerlink" title="jsonp参数对应callbackParam参数名，jsonpCallback对应值，也就是回调的页面js function方法名。"></a>jsonp参数对应callbackParam参数名，jsonpCallback对应值，也就是回调的页面js function方法名。</h4><h4 id="（注意：如果回调不成功，检查返回的数据是不是json。）"><a href="#（注意：如果回调不成功，检查返回的数据是不是json。）" class="headerlink" title="（注意：如果回调不成功，检查返回的数据是不是json。）"></a>（注意：如果回调不成功，检查返回的数据是不是json。）</h4><h4 id="先回调jsonpCallback方法（如果没有直接跳过这一步），再进入ajax-success的处理逻辑。"><a href="#先回调jsonpCallback方法（如果没有直接跳过这一步），再进入ajax-success的处理逻辑。" class="headerlink" title="先回调jsonpCallback方法（如果没有直接跳过这一步），再进入ajax success的处理逻辑。"></a>先回调jsonpCallback方法（如果没有直接跳过这一步），再进入ajax success的处理逻辑。</h4><h4 id="jsonp仅仅适用于跨服务的get请求"><a href="#jsonp仅仅适用于跨服务的get请求" class="headerlink" title="jsonp仅仅适用于跨服务的get请求"></a>jsonp仅仅适用于跨服务的get请求</h4><p>后台返回数据格式为：</p>
 <p>“callbackParam”({“view”:null,”model”:{“hashMap”:{“result”:”{\”items\”:[{\”item\”:\”1\”,\”score\”:0.8},{\”item\”:\”2\”,\”score\”:0.6},{\”item\”:\”3\”,\”score\”:0.9},{\”item\”:\”5\”,\”score\”:0.6},{\”item\”:\”6\”,\”score\”:0.1}]}”,”message”:”Success”,”Flag”:”1”}},”empty”:false,”viewName”:null,”reference”:false,”modelMap”:{“hashMap”:{“result”:”{\”items\”:[{\”item\”:\”1\”,\”score\”:0.8},{\”item\”:\”2\”,\”score\”:0.6},{\”item\”:\”3\”,\”score\”:0.9},{\”item\”:\”5\”,\”score\”:0.6},{\”item\”:\”6\”,\”score\”:0.1}]}”,”message”:”Success”,”Flag”:”1”}}})</p>
 <p>spring4.0,返回JSONObject，返回的格式为<br>{<br>“function”:”callbackParam”,<br>“value”:{“view”:null,”model”:{“hashMap”:{“result”:”{\”items\”:[{\”item\”:\”1\”,\”score\”:0.8},{\”item\”:\”2\”,\”score\”:0.6},{\”item\”:\”3\”,\”score\”:0.9},{\”item\”:\”5\”,\”score\”:0.6},{\”item\”:\”6\”,\”score\”:0.1}]}”,”message”:”Success”,”Flag”:”1”}},”empty”:false,”viewName”:null,”reference”:false,”modelMap”:{“hashMap”:{“result”:”{\”items\”:[{\”item\”:\”1\”,\”score\”:0.8},{\”item\”:\”2\”,\”score\”:0.6},{\”item\”:\”3\”,\”score\”:0.9},{\”item\”:\”5\”,\”score\”:0.6},{\”item\”:\”6\”,\”score\”:0.1}]}”,”message”:”Success”,”Flag”:”1”}}}<br>}</p>
-<p>页面js</p>
-<pre><code>$.ajax({
+<h3 id="3、页面js"><a href="#3、页面js" class="headerlink" title="- 3、页面js"></a>- 3、页面js</h3><pre><code>$.ajax({
     type: &quot;GET&quot;,
     async:false,
     url :&quot;http://localhost:8180/autoRecommend/getuserproductinfo?&quot;+timestamp,
@@ -102,8 +108,9 @@
     error:function(data){
     }
 });
-</code></pre><p>后台</p>
-<pre><code>/**
+</code></pre><h3 id="4、后台"><a href="#4、后台" class="headerlink" title="- 4、后台"></a>- 4、后台</h3><pre><code>import org.codehaus.jackson.map.util.JSONPObject;
+
+/**
 * &quot;callbackParam&quot;为参数名
 * callbackParam的值为页面回调的js function名
 */
@@ -125,18 +132,18 @@ public @ResponseBody JSONPObject getUserProductInfo(HttpServletRequest request, 
     }
 
 }
-</code></pre></script></p>
+</code></pre>
 	</div>
 	<div class="meta split">
 		
-		<time class="post-date" datetime="2018-01-29T07:23:15.714Z" itemprop="datePublished">2018-01-29</time>
+		<time class="post-date" datetime="2018-01-30T08:02:34.621Z" itemprop="datePublished">2018-01-30</time>
 	</div>
 </article>
 
 <!--评论-->
 
 	
-<div class="ds-thread" data-thread-key="4 jsonp简单应用" data-title="" data-url="/2018/01/29/4 jsonp简单应用/"></div>
+<div class="ds-thread" data-thread-key="4 jsonp应用" data-title="jsonp应用" data-url="/2018/01/30/4 jsonp应用/"></div>
 <script type="text/javascript">
 
 var duoshuoQuery = {short_name:"yumemor"};

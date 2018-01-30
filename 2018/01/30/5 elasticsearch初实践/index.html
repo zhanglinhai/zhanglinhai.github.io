@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     
-    <title>tomato</title>
+    <title>elasticsearch应用 | tomato</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
     
@@ -72,15 +72,21 @@
     <!--文章-->
 <article>
 	
+  
+    <h1 class="post-title" itemprop="name">
+      elasticsearch应用
+    </h1>
+  
+
 	<div class='post-body mb'>
-		<h2 id="elasticsearch应用背景"><a href="#elasticsearch应用背景" class="headerlink" title="elasticsearch应用背景"></a>elasticsearch应用背景</h2><p>一个产品推荐系统，基于用户购买的行为记录，为用户归类，例如保险产品，用户所属为父母类人群，为用户推荐小孩种类的保险。<br>根据用户身份证号查询对应的产品信息，这个集合（索引）是大数据跑出来的。</p>
+		<h3 id="1、elasticsearch应用背景"><a href="#1、elasticsearch应用背景" class="headerlink" title="- 1、elasticsearch应用背景"></a>- 1、elasticsearch应用背景</h3><p>一个产品推荐系统，基于用户购买的行为记录，为用户归类，例如保险产品，用户所属为父母类人群，为用户推荐小孩种类的保险。<br>根据用户身份证号查询对应的产品信息，这个集合（索引）是大数据跑出来的。</p>
 <p>elasticsearch 底层是基于Lucene，对外提供restApi接口调用</p>
-<h2 id="elasticsearch安装下载"><a href="#elasticsearch安装下载" class="headerlink" title="elasticsearch安装下载"></a>elasticsearch安装下载</h2><p>jdk1.8环境</p>
+<h3 id="2、elasticsearch安装下载"><a href="#2、elasticsearch安装下载" class="headerlink" title="- 2、elasticsearch安装下载"></a>- 2、elasticsearch安装下载</h3><p>jdk1.8环境</p>
 <p>$ wget  <a href="https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-5.5.1.zip" target="_blank" rel="external">https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-5.5.1.zip</a><br>$ unzip elasticsearch-5.5.1.zip<br>$ cd elasticsearch-5.5.1/ </p>
-<h2 id="权限配置"><a href="#权限配置" class="headerlink" title="权限配置"></a>权限配置</h2><p>chmod -R 777 /upload</p>
-<h2 id="启动"><a href="#启动" class="headerlink" title="启动"></a>启动</h2><p>新建elasticsearch用户，不要用root启动。<br>进入bin启动 ./elasticsearch</p>
+<h3 id="3、权限配置"><a href="#3、权限配置" class="headerlink" title="- 3、权限配置"></a>- 3、权限配置</h3><p>chmod -R 777 /upload</p>
+<h3 id="启动"><a href="#启动" class="headerlink" title="启动"></a>启动</h3><p>新建elasticsearch用户，不要用root启动。<br>进入bin启动 ./elasticsearch</p>
 <p>默认9200为对外访问端口，9300内部之间访问端口</p>
-<h2 id="增删改查"><a href="#增删改查" class="headerlink" title="增删改查"></a>增删改查</h2><h3 id="index"><a href="#index" class="headerlink" title="index"></a>index</h3><ol>
+<h3 id="4、增删改查"><a href="#4、增删改查" class="headerlink" title="- 4、增删改查"></a>- 4、增删改查</h3><h3 id="index"><a href="#index" class="headerlink" title="index"></a>index</h3><ol>
 <li>查看当前节点的所有 Index<br>curl -X GET ‘<a href="http://localhost:9200/_cat/indices?v" target="_blank" rel="external">http://localhost:9200/_cat/indices?v</a>‘</li>
 <li>查看指定index所有type<br>curl ‘localhost:9200/indexName/_mapping?pretty=true’</li>
 <li>查询某index type<br>curl ‘localhost:9200/indexName/typeName/_search’</li>
@@ -89,13 +95,13 @@
 <li>删除记录<br>$ curl -X DELETE ‘localhost:9200/accounts/person/1’</li>
 <li>更新记录<br>$ curl -X PUT ‘localhost:9200/accounts/person/1’ -d ‘<br>{<br> “user” : “张三”,<br> “title” : “工程师”,<br> “desc” : “数据库管理，软件开发”<br>}’ <h4 id="8-elasticsearch查询语法，之后会再开一篇来介绍TODO"><a href="#8-elasticsearch查询语法，之后会再开一篇来介绍TODO" class="headerlink" title="8. elasticsearch查询语法，之后会再开一篇来介绍TODO"></a>8. elasticsearch查询语法，之后会再开一篇来介绍TODO</h4></li>
 </ol>
-<h2 id="客户端"><a href="#客户端" class="headerlink" title="客户端"></a>客户端</h2><ol>
+<h3 id="5、客户端"><a href="#5、客户端" class="headerlink" title="- 5、客户端"></a>- 5、客户端</h3><ol>
 <li>TransportClient(附demo链接)</li>
 <li>原生rest接口访问</li>
 <li>springframework.data.responstory.Elasticsearchtemplate </li>
 </ol>
 <h2 id="不同版本的坑，2-4和5-1"><a href="#不同版本的坑，2-4和5-1" class="headerlink" title="不同版本的坑，2.4和5.1"></a>不同版本的坑，2.4和5.1</h2><p>1、 2.4和5.1 TransportClient获取链接写法有区别<br>2、 5.1的TransportClient需要较高版本的guava，这里用的为 18.0<br>3、 内存不够用的情况下，进入config目录，修改jvm.property，内存由2G修改为512M</p>
-<h2 id="extend-插件（head）"><a href="#extend-插件（head）" class="headerlink" title="extend 插件（head）"></a>extend 插件（head）</h2><pre><code>yum install git npm                            
+<h3 id="6、extend-插件（head）"><a href="#6、extend-插件（head）" class="headerlink" title="- 6、extend 插件（head）"></a>- 6、extend 插件（head）</h3><pre><code>yum install git npm                            
 npm在epel源中
 git clone https://github.com/mobz/elasticsearch-head.git        
 # 安装过程需要连接互联网
@@ -107,14 +113,14 @@ npm run start
 	</div>
 	<div class="meta split">
 		
-		<time class="post-date" datetime="2018-01-30T07:35:35.157Z" itemprop="datePublished">2018-01-30</time>
+		<time class="post-date" datetime="2018-01-30T07:52:12.125Z" itemprop="datePublished">2018-01-30</time>
 	</div>
 </article>
 
 <!--评论-->
 
 	
-<div class="ds-thread" data-thread-key="5 elasticsearch初实践" data-title="" data-url="/2018/01/30/5 elasticsearch初实践/"></div>
+<div class="ds-thread" data-thread-key="5 elasticsearch初实践" data-title="elasticsearch应用" data-url="/2018/01/30/5 elasticsearch初实践/"></div>
 <script type="text/javascript">
 
 var duoshuoQuery = {short_name:"yumemor"};
